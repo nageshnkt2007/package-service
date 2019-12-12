@@ -4,7 +4,7 @@ This application is bifurcated into two applications
 1. Front-End - Angular 7 application
 2. Back-End - SpringBoot application
 
-1. Front -End
+# Front -End
 
 # ShopPackageApp
 
