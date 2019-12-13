@@ -19,6 +19,7 @@ import java.util.List;
  * PackageController for exposing rest end points
  * for performing CRUD operations for package.
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "/package", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PackageController {

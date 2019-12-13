@@ -38,7 +38,7 @@ public class CurrencyServiceImpl implements CurrencyService {
      */
     private CurrencyDto getCurrencyDetails(String currency) {
         LOG.info("getting currency details for currency  {} ",currency);
-        currency = !StringUtils.isEmpty(currency) ? Constants.USD : currency;
+        currency = StringUtils.isEmpty(currency) ? Constants.USD : currency;
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(Constants.URL_CURRENCY).queryParam(Constants.BASE, currency);
         CurrencyDto currencyDto = null;
         RestTemplate restTemplate = new RestTemplate();

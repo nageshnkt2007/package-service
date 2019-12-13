@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "/currency", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CurrencyController {
@@ -21,7 +20,7 @@ public class CurrencyController {
     private CurrencyService currencyService;
 
     @GetMapping("/rates")
-    public ResponseEntity<?> getCurrencyDetails(String currency){
+    public ResponseEntity<?> getCurrencyDetails(@RequestParam(name = "base",required = false) String currency){
         return ResponseEntity.status(HttpStatus.OK).body(currencyService.getCurrencyRate(currency));
     }
 }

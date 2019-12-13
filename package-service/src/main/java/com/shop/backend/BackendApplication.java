@@ -12,13 +12,13 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
 
-    public WebMvcConfigurer corsConfigurer() {
+    /*public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/*").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/currency").allowedOrigins("http://localhost:4200");
             }
         };
-    }
+    }*/
 
 }
