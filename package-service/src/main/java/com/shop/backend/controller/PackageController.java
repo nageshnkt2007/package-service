@@ -20,7 +20,7 @@ import java.util.List;
  * PackageController for exposing rest end points
  * for performing CRUD operations for package.
  */
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "/package", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PackageController {
@@ -45,7 +45,7 @@ public class PackageController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createPackage(@RequestParam PackageDto packageDto) {
+    public ResponseEntity<?> createPackage(@RequestBody PackageDto packageDto) {
         Boolean isCreatePackageSuccess = packageService.
                 createPackage(PackageUtil.covertToPackage(packageDto));
         return ResponseEntity.status(HttpStatus.OK).body(isCreatePackageSuccess);
