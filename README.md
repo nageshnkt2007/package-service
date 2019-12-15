@@ -1,35 +1,15 @@
 # package-service
-set of applications to manage package handling.
-This application is bifurcated into two applications
-1. Front-End - Angular 7 application
-2. Back-End - SpringBoot application
+backend part of application to manage shop packages.
 
-# Front -End
+# Requirements
+For building and running the application you need:
 
-# ShopPackageApp
+JDK 1.8
+Maven 3
+# Run Application Locally
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
+There are several ways to run a Spring Boot application on your local machine. One way is to execute the main method in the com.shop.backend.BackendApplication class from your IDE.
 
-## Development server
+Alternatively you can use the Spring Boot Maven plugin like so:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+mvn spring-boot:run
