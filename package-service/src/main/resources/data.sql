@@ -37,9 +37,3 @@ VALUES
        (10, 399, 'Platinum Coin', 'IP3cv7TcZhQn',6),
        (11, 649, 'Bow', 'IJOHGYkY2CYq',6),
        (12, 50, 'Silver Coin', '8anPsR2jbfNW',6);
-/*DELETE FROM PACKAGE_PRODUCTS;
-INSERT INTO PACKAGE_PRODUCTS (packageId, productId)
-VALUES
-       (4,4  ),
-       (4,5),
-       (4,6);*/

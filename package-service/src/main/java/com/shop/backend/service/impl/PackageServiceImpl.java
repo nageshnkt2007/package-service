@@ -9,13 +9,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Package Service to handle all the CRUD operations,
+ * Done on ShopPackage .
+ */
 @Service("packageService")
+@Transactional
 public class PackageServiceImpl implements PackageService {
 
     /**
