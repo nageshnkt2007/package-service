@@ -9,4 +9,10 @@ public interface CurrencyService {
      * @return Current Currency details .
      */
     CurrencyDto getCurrencyRate(String currency);
+
+    /**
+     * @param currency
+     * @return factor for currency calculation .
+     */
+    Float getCurrencyFactor(String currency);
 }

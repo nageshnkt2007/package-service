@@ -46,18 +46,18 @@ public final class PackageUtil {
         return productList;
     }
 
-    public static List<PackageDto> calculateTotalCost(List<PackageDto> packageDtos) {
+    public static List<PackageDto> calculateTotalCost(List<PackageDto> packageDtos, Float currencyRateInFloat) {
         List<PackageDto> packageDtoList = new ArrayList<>();
         packageDtos.forEach(pckDto -> {
-            packageDtoList.add(getSumForProducts(pckDto));
+            packageDtoList.add(getSumForProducts(pckDto, currencyRateInFloat));
         });
         return packageDtoList;
     }
 
-    public static PackageDto getSumForProducts(PackageDto pckDto) {
+    public static PackageDto getSumForProducts(PackageDto pckDto, Float currencyRateInFloat) {
         List<Integer> prices = pckDto.getProducts().stream().map(ProductDto::getBasePrice).collect(Collectors.toList());
-        int sum = prices.stream().mapToInt(Integer::intValue).sum();
-        pckDto.setTotalPrice(sum);
+        float sum = prices.stream().mapToInt(Integer::intValue).sum();
+        pckDto.setTotalPrice(sum* currencyRateInFloat);
         return pckDto;
     }
 }

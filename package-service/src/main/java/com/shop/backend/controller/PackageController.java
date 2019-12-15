@@ -2,6 +2,7 @@ package com.shop.backend.controller;
 
 import com.shop.backend.exception.PackageServiceException;
 import com.shop.backend.model.ShopPackage;
+import com.shop.backend.service.CurrencyService;
 import com.shop.backend.util.PackageUtil;
 import com.shop.backend.dto.PackageDto;
 import com.shop.backend.service.PackageService;
@@ -32,11 +33,14 @@ public class PackageController {
     @Autowired
     private PackageService packageService;
 
-    @GetMapping("/get/{packageId}")
-    public ResponseEntity<?> getPackage(@PathVariable Long packageId) throws PackageServiceException {
+    @Autowired
+    private CurrencyService currencyService;
+
+    @GetMapping("/{packageId}")
+    public ResponseEntity<?> getPackage(@PathVariable Long packageId, @RequestParam(value = "currency",required = false) String currency) throws PackageServiceException {
         ShopPackage shopPackage = packageService.getPackage(packageId);
         PackageDto shopPackageDto = PackageUtil.covertToPackageDto(shopPackage);
-        shopPackageDto = PackageUtil.getSumForProducts(shopPackageDto);
+        shopPackageDto = PackageUtil.getSumForProducts(shopPackageDto, currencyService.getCurrencyFactor(currency));
         return ResponseEntity.status(HttpStatus.OK).body(shopPackageDto);
     }
 
@@ -48,7 +52,7 @@ public class PackageController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updatePackage(@RequestParam PackageDto packageDto) throws PackageServiceException {
+    public ResponseEntity<?> updatePackage(@RequestParam("packageDto") PackageDto packageDto) throws PackageServiceException {
         ShopPackage shopPackage = packageService.getPackage(packageDto.getId());
         shopPackage = PackageUtil.updateShopPackageValues(shopPackage, packageDto);
         Boolean isUpdatePackageSuccess = packageService.updatePackage(shopPackage);
@@ -62,12 +66,11 @@ public class PackageController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getPackages() {
+    public ResponseEntity<?> getPackages(@RequestParam(value = "currency",required = false) String currency) {
         LOG.info("method getPackages for getting all packages");
-        List<PackageDto> packageDtos = PackageUtil.convertToPackageDtoList(packageService.getPackages());
-        packageDtos = PackageUtil.calculateTotalCost(packageDtos);
+        List<ShopPackage> packages = packageService.getPackages();
+        List<PackageDto> packageDtos = PackageUtil.convertToPackageDtoList(packages);
+        packageDtos = PackageUtil.calculateTotalCost(packageDtos , currencyService.getCurrencyFactor(currency));
         return ResponseEntity.status(HttpStatus.OK).body(packageDtos);
     }
-
-
 }

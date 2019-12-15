@@ -51,4 +51,21 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
         return currencyDto;
     }
+
+    /**
+     * @param currency .
+     * @return factor for a currency .
+     */
+    @Override
+    public Float getCurrencyFactor(String currency) {
+        Float currencyRateInFloat = Constants.DEFAULT_CURRENCY_FACTOR;
+        if(!StringUtils.isEmpty(currency)){
+            CurrencyDto currencyDto = getCurrencyRate(Constants.USD);
+            String currencyRate = currencyDto.getRates().get(currency);
+            if(!StringUtils.isEmpty(currencyRate)){
+                currencyRateInFloat = Float.parseFloat(currencyRate);
+            }
+        }
+        return currencyRateInFloat;
+    }
 }

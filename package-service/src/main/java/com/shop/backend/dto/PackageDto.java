@@ -28,7 +28,7 @@ public class PackageDto {
     /**
      * Total Price of this package (Addition of total base price of all products).
      */
-    private Integer totalPrice;
+    private Float totalPrice;
 
     public Long getId() {
         return id;
@@ -62,11 +62,11 @@ public class PackageDto {
         this.products = products;
     }
 
-    public Integer getTotalPrice() {
+    public Float getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(Float totalPrice) {
         this.totalPrice = totalPrice;
     }
 }
